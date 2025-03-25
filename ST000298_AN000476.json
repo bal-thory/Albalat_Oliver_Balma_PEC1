@@ -1,0 +1,76 @@
+{
+"METABOLOMICS WORKBENCH":{"STUDY_ID":"ST000298","ANALYSIS_ID":"AN000476","VERSION":"1","CREATED_ON":"December 28, 2015, 11:42 am"},
+
+"PROJECT":{"PROJECT_TITLE":"Metabolomics of Psoriasis","PROJECT_SUMMARY":"Metabolomics of Psoriasis","INSTITUTE":"University of Michigan","DEPARTMENT":"Dermatology","LABORATORY":"Gudjonsson Lab","LAST_NAME":"Gudjonsson","FIRST_NAME":"Johann","ADDRESS":"Ann Arbor, MI","EMAIL":"johanng@med.umich.edu","PHONE":"734-615-4508"},
+
+"STUDY":{"STUDY_TITLE":"Analysis of steroid metabolites in psoriasis.","STUDY_SUMMARY":"Analysis of steroid metabolites in tissue of patients with different psoriasis status.","INSTITUTE":"University of Michigan","DEPARTMENT":"Biomedical Research Core Facilities","LABORATORY":"Metabolomics core","LAST_NAME":"Kachman","FIRST_NAME":"Maureen","ADDRESS":"6300 Brehm Tower, 1000 Wall Street, Ann Arbor, MI 48105-5714","EMAIL":"mkachman@med.umich.edu","PHONE":"(734) 232-8175","NUM_GROUPS":"3","TOTAL_SUBJECTS":"9"},
+
+"SUBJECT":{"SUBJECT_TYPE":"Human","SUBJECT_SPECIES":"Homo sapiens","TAXONOMY_ID":"9606"},
+"SUBJECT_SAMPLE_FACTORS":[
+{
+"Subject ID":"SU0011723",
+"Sample ID":"S00017314",
+"Factors":{"Psoriasis Status":"Psoriasis involved"}
+},
+{
+"Subject ID":"SU0011723",
+"Sample ID":"S00017315",
+"Factors":{"Psoriasis Status":"Psoriasis involved"}
+},
+{
+"Subject ID":"SU0011723",
+"Sample ID":"S00017316",
+"Factors":{"Psoriasis Status":"Psoriasis involved"}
+},
+{
+"Subject ID":"SU0011723",
+"Sample ID":"S00017317",
+"Factors":{"Psoriasis Status":"Psoriasis uninvolved"}
+},
+{
+"Subject ID":"SU0011723",
+"Sample ID":"S00017318",
+"Factors":{"Psoriasis Status":"Psoriasis uninvolved"}
+},
+{
+"Subject ID":"SU0011723",
+"Sample ID":"S00017319",
+"Factors":{"Psoriasis Status":"Psoriasis uninvolved"}
+},
+{
+"Subject ID":"SU0011723",
+"Sample ID":"S00017320",
+"Factors":{"Psoriasis Status":"Normal"}
+},
+{
+"Subject ID":"SU0011723",
+"Sample ID":"S00017321",
+"Factors":{"Psoriasis Status":"Normal"}
+},
+{
+"Subject ID":"SU0011723",
+"Sample ID":"S00017322",
+"Factors":{"Psoriasis Status":"Normal"}
+}
+],
+"COLLECTION":{"COLLECTION_SUMMARY":"-","SAMPLE_TYPE":"Biopsy"},
+
+"TREATMENT":{"TREATMENT_SUMMARY":"-"},
+
+"SAMPLEPREP":{"SAMPLEPREP_SUMMARY":"-","SAMPLEPREP_PROTOCOL_FILENAME":"Steroids-20150305.docx"},
+
+"CHROMATOGRAPHY":{"CHROMATOGRAPHY_TYPE":"Reversed phase","INSTRUMENT_NAME":"Agilent 1290","COLUMN_NAME":"Restek 2.1mm x 50mm 1.9um Pinnacle DB Biphenyl","METHODS_FILENAME":"Steroids-20150305.docx"},
+
+"ANALYSIS":{"ANALYSIS_TYPE":"MS","ANALYSIS_PROTOCOL_FILE":"Steroids-20150305.docx"},
+
+"MS":{"MS_COMMENTS":"-","INSTRUMENT_TYPE":"Triple quadrupole","MS_TYPE":"ESI","ION_MODE":"UNSPECIFIED","INSTRUMENT_NAME":"Agilent 6410A QQQ Agilent QQQ 6410A"},
+
+"MS_METABOLITE_DATA":{
+"Units":"pg/mg tissue",
+
+"Data":[{"Metabolite":"11-deoxycortisol","S00017317":"0.570","S00017315":"0.610","S00017322":"0","S00017316":"0.31","S00017318":"2.68","S00017319":"0.26","S00017320":"0.93","S00017321":"3.33","S00017314":"1.43"},{"Metabolite":"11-DOC","S00017317":"1.760","S00017315":"0.480","S00017322":"3.74","S00017316":"0.97","S00017318":"3.05","S00017319":"1.29","S00017320":"5.26","S00017321":"9.88","S00017314":"2.05"},{"Metabolite":"17-Hydroxyprogesterone","S00017317":"0.180","S00017315":"6.830","S00017322":"29.85","S00017316":"111.35","S00017318":"109.3","S00017319":"53.91","S00017320":"337.19","S00017321":"2126.34","S00017314":"66.98"},{"Metabolite":"Androstenedione","S00017317":"0.600","S00017315":"4.620","S00017322":"4.86","S00017316":"3.82","S00017318":"7.71","S00017319":"8.01","S00017320":"17.09","S00017321":"105.27","S00017314":"4.02"},{"Metabolite":"Corticosterone","S00017317":"0.570","S00017315":"","S00017322":"0.85","S00017316":"","S00017318":"","S00017319":"0.82","S00017320":"","S00017321":"","S00017314":"0.63"},{"Metabolite":"Cortisol","S00017317":"6.1","S00017315":"3.3","S00017322":"23","S00017316":"24.1","S00017318":"20.1","S00017319":"21.7","S00017320":"130.8","S00017321":"915.4","S00017314":"26.6"},{"Metabolite":"Cortisone","S00017317":"8.9","S00017315":"2.8","S00017322":"6","S00017316":"11","S00017318":"14.3","S00017319":"8.4","S00017320":"5.1","S00017321":"16.6","S00017314":"6.2"},{"Metabolite":"Progesterone","S00017317":"7.130","S00017315":"2.040","S00017322":"9.29","S00017316":"7.15","S00017318":"32.09","S00017319":"8.36","S00017320":"82.13","S00017321":"136.38","S00017314":"11.35"},{"Metabolite":"Testosterone","S00017317":"0.540","S00017315":"0.300","S00017322":"1.1","S00017316":"0.71","S00017318":"1.59","S00017319":"0.29","S00017320":"2.59","S00017321":"2.41","S00017314":"0.46"}],
+
+"Metabolites":[{"Metabolite":"11-deoxycortisol","PubChem CID":"440707"},{"Metabolite":"11-DOC","PubChem CID":"6166"},{"Metabolite":"17-Hydroxyprogesterone","PubChem CID":"6238"},{"Metabolite":"Androstenedione","PubChem CID":"6128"},{"Metabolite":"Corticosterone","PubChem CID":"5753"},{"Metabolite":"Cortisol","PubChem CID":"5754"},{"Metabolite":"Cortisone","PubChem CID":"222786"},{"Metabolite":"Progesterone","PubChem CID":"5994"},{"Metabolite":"Testosterone","PubChem CID":"6013"}]
+}
+
+}
