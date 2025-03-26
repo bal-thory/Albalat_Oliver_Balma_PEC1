@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ---
 title: "PAC 1 - Dades òmiques"
 author: "Balma Albalat Oliver
@@ -333,4 +332,3 @@ poma_obj
 ```
 
 
->>>>>>> 230d2c0358dcdde75d394b794c71b4229d0a3a64
