@@ -39,6 +39,9 @@ if (!require("readr", quietly = TRUE))
 if (!requireNamespace("SummarizedExperiment", quietly = TRUE)) {
   install.packages("SummarizedExperiment")
 }
+if (!requireNamespace("ggplot2", quietly = TRUE)) {
+  install.packages("ggplot2")
+}
 BiocManager::install("Biobase")
 BiocManager::install("POMA")
 BiocManager::install("SummarizedExperiment")
@@ -48,6 +51,7 @@ library(magrittr)
 library(SummarizedExperiment)
 library(readr)
 library(purrr)
+library(ggplot2)
 ```
 
 ```{r data_prep}
@@ -192,3 +196,33 @@ metadata(poma_obj)
 
 ```
 
+4. ANÀLISI EXPLORATORI
+```{r exploration}
+
+# MISSING VALUES #
+
+#Ja els hem netejat durant la preparació del SummarizedExperiment. Hem eliminat el metabolit 'Corticosterone' que no presentava dades per a totes les mostres.
+
+# CAL NORMALITZAR LES DADES? #
+
+
+# Dades en cru #
+p1<-PomaBoxplots(
+  poma_obj, 
+  x= "samples",
+  feature_name = NULL,)
+
+print(p1)
+
+
+# Dades normalitzades
+normalized<- poma_obj  %>% 
+  PomaNorm(method="log_pareto")
+p2<-PomaBoxplots(
+  normalized,
+  x= "samples",
+  feature_name = NULL,)
+
+print(p2)
+
+```
