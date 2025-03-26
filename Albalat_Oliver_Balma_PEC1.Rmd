@@ -112,20 +112,20 @@ head(metabolite_matrix)
 
 2.  CREAR OBJECTE 'SummarizedExperiment'
 ```{r SumExp}
-# Asegúrate de que las muestras en `colData` coincidan con las columnas de `metabolite_matrix`
-# Por ejemplo, las muestras en colData$SampleID deben coincidir con los nombres de las columnas en metabolite_matrix
 
-# Crear el objeto SummarizedExperiment
 
-# Eliminar la fila 5 de metabolite_matrix
+# Eliminar la fila 5, que conté la info del metabolit amb dades faltants
+
 metabolite_matrix <- metabolite_matrix[-5, ]
 metabolite_matrix <-t(metabolite_matrix)
-
 colData <- colData[!rownames(colData) %in% "Corticosterone", ]
 
-# Verificar que el metabolito ha sido eliminado de ambas matrices
-head(metabolite_matrix)
-head(colData)
+# Comprovem que coincideixen les files
+
+nrow(metabolite_matrix)
+nrow(colData)
+
+# Generm el SummarizedExperiment 
 
 library(POMA)
 poma_obj <- PomaCreateObject(
@@ -133,8 +133,60 @@ poma_obj <- PomaCreateObject(
   features = metabolite_matrix 
 )
 
-# Verificar el objeto SummarizedExperiment
+# Verifiquem
+
 poma_obj
+
+```
+
+3. AFEGIM METADADES GENERALS DEL PROJECTE
+
+```{r Metadata}
+# Afegim les metadades a l'objecte SummarizedExperiment
+for (key in names(json_data$METABOLOMICS)) {
+  metadata(poma_obj)$METABOLOMICS[[key]] <- json_data$METABOLOMICS[[key]]
+}
+for (key in names(json_data$PROJECT)) {
+  metadata(poma_obj)$PROJECT[[key]] <- json_data$PROJECT[[key]]
+}
+
+for (key in names(json_data$STUDY)) {
+  metadata(poma_obj)$STUDY[[key]] <- json_data$STUDY[[key]]
+}
+
+for (key in names(json_data$SUBJECT)) {
+  metadata(poma_obj)$SUBJECT[[key]] <- json_data$SUBJECT[[key]]
+}
+
+for (key in names(json_data$SUBJECT_SAMPLE_FACTORS)) {
+  metadata(poma_obj)$SUBJECT_SAMPLE_FACTORS[[key]] <- json_data$SUBJECT_SAMPLE_FACTORS[[key]]
+}
+
+for (key in names(json_data$COLLECTION)) {
+  metadata(poma_obj)$COLLECTION[[key]] <- json_data$COLLECTION[[key]]
+}
+
+for (key in names(json_data$TREATMENT)) {
+  metadata(poma_obj)$TREATMENT[[key]] <- json_data$TREATMENT[[key]]
+}
+
+for (key in names(json_data$SAMPLEPREP)) {
+  metadata(poma_obj)$SAMPLEPREP[[key]] <- json_data$SAMPLEPREP[[key]]
+}
+
+for (key in names(json_data$CHROMATOGRAPHY)) {
+  metadata(poma_obj)$CHROMATOGRAPHY[[key]] <- json_data$CHROMATOGRAPHY[[key]]
+}
+
+for (key in names(json_data$ANALYSIS)) {
+  metadata(poma_obj)$ANALYSIS[[key]] <- json_data$ANALYSIS[[key]]
+}
+
+for (key in names(json_data$MS)) {
+  metadata(poma_obj)$MS[[key]] <- json_data$MS[[key]]
+}
+
+metadata(poma_obj)
 
 ```
 
