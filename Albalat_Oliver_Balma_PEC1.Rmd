@@ -1,5 +1,6 @@
 ---
-title: "Albalat Oliver Balma PAC 1"
+title: "PAC 1 - Dades òmiques"
+author: "Balma Albalat Oliver
 output:
   word_document: default
   html_notebook: default
@@ -9,7 +10,7 @@ output:
 
 #1.DESCRIPCIÓ I JUSTIFICACIO DE LA BASE DE DADES
 
-#He triat la database associada al projecte "Metabolomics of Psoriasis" que pot consultar-se a #l'enllaç: <https://www.metabolomicsworkbench.org/data/DRCCMetadata.php?Mode=Project&ProjectID=PR#000239>. He triat aquest tema perquè pateixo aquesta malaltia i m'ha causat curiositat #aprofundir en aquesta qüestió.
+#He triat la database associada al projecte "Metabolomics of Psoriasis" que pot consular-se en el repositori 'Metabolomics workbench' amb l'identificador de projecte PR000239. He triat aquest tema perquè pateixo aquesta malaltia i m'ha causat curiositat #aprofundir en aquesta qüestió.
 
 #Es tracta d'un estudi desenvolupat pel Departament de Dermatologia de la Universitat de Michigan, dirigit per l'investigador Johann Gudjonsson. L'objectiu de l'estudi és estudiar els metabolits esteroides en els teixits de pacients amb diferents estats de psoriasis. Per assolir-lo es van realitzar biòpsis per obtenir 9 mostres de pell que es van categoritzar en 3 subgrups:
 
