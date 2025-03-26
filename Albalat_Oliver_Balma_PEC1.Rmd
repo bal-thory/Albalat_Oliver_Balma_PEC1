@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ---
 title: "PAC 1 - Dades òmiques"
 author: "Balma Albalat Oliver
@@ -191,3 +192,145 @@ metadata(poma_obj)
 ```
 
 
+=======
+---
+title: "Albalat Oliver Balma PAC 1"
+output:
+  word_document: default
+  html_notebook: default
+---
+
+#INFORME
+
+#1.DESCRIPCIÓ I JUSTIFICACIO DE LA BASE DE DADES
+
+#He triat la database associada al projecte "Metabolomics of Psoriasis" que pot consultar-se a #l'enllaç: <https://www.metabolomicsworkbench.org/data/DRCCMetadata.php?Mode=Project&ProjectID=PR#000239>. He triat aquest tema perquè pateixo aquesta malaltia i m'ha causat curiositat #aprofundir en aquesta qüestió.
+
+#Es tracta d'un estudi desenvolupat pel Departament de Dermatologia de la Universitat de Michigan, dirigit per l'investigador Johann Gudjonsson. L'objectiu de l'estudi és estudiar els metabolits esteroides en els teixits de pacients amb diferents estats de psoriasis. Per assolir-lo es van realitzar biòpsis per obtenir 9 mostres de pell que es van categoritzar en 3 subgrups:
+
+#-Pell sana (3) -Pell afectada per psoriasis (3) -Pell no afectada en pacients amb psoriasis (3)
+
+#A través de la cromatografía líquida acoplada a l'espectrometria de masses (LC-MS) es van analitzar les concentracions d'esteroides, expressades en pg/mg de teixit, caracteritzant d'aquesta manera els perfils metabòlics de cada mostra de pell.
+
+```{r packages}
+if(!require(jsonlite)){
+    install.packages("jsonlite")
+    library(jsonlite)}
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+if (!require("ggtext", quietly = TRUE))
+    install.packages("ggtext")
+if (!require("magrittr", quietly = TRUE))
+    install.packages("magrittr")
+if (!require("dplyr", quietly = TRUE))
+    install.packages("dplyr")
+if (!require("tidyr", quietly = TRUE))
+    install.packages("tidyr")
+if (!require("tibble", quietly = TRUE))
+    install.packages("tibble")
+if (!require("purrr", quietly = TRUE))
+    install.packages("purrr")
+if (!require("readr", quietly = TRUE))
+    install.packages("readr")
+library(readr)
+library(purrr)
+BiocManager::install("Biobase")
+BiocManager::install("POMA")
+BiocManager::install("SummarizedExperiment")
+library(POMA)
+library(ggtext)
+library(magrittr)
+```
+
+```{r data_prep}
+
+##### PREPARACIÓ I IMPORTACIÓ DE LES DADES ####
+
+# Importar l'arxiu de dades '.json'
+
+library(jsonlite)
+json_data <-jsonlite::fromJSON("ST000298_AN000476.json", flatten = TRUE)
+# Cerquem i resolem valors nuls #
+null_values <- sapply(json_data, function(x) any(is.null(x)))
+na_values <- sapply(json_data, function(x) any(is.na(x)))
+# Print results
+print("Valors nuls en:")
+print(names(json_data)[null_values])
+
+### Creació colData (info i factor mostres) ###
+# Extraem la info de json_data
+if (is.data.frame(json_data$SUBJECT_SAMPLE_FACTORS)) {
+  sample_df <- json_data$SUBJECT_SAMPLE_FACTORS
+} else {
+  sample_info <- as.character(unlist(data$SUBJECT_SAMPLE_FACTORS))
+  sample_df <- read.table(text = sample_info, sep = "\t", header = FALSE, stringsAsFactors = FALSE)
+}
+colnames(sample_df) <- c("Subject", "SampleID", "Factors")
+
+# Associem els factors a columnes i creem colData#
+
+# Crear un DataFrame de factores
+factor_df <- data.frame(Factor = sample_df$Factors)
+
+# Combinar con el DataFrame original
+colData <- cbind(sample_df[, "SampleID", drop = FALSE], factor_df)
+
+# Asignar nombres a las filas
+row.names(colData) <- colData$SampleID
+
+# Ver el resultado
+head(colData)
+
+
+
+### Extreuracció de dades metabòliques (fe) ###
+# L'utilitzarem per a fer els anàlisi #
+
+metabolite_data<-json_data$MS_METABOLITE_DATA$Data
+metabolite_matrix <- as.data.frame(metabolite_data)
+rownames(metabolite_matrix) <- metabolite_matrix$Metabolite
+metabolite_matrix <- metabolite_matrix[, -1]  # 
+metabolite_matrix <- t(metabolite_matrix)
+metabolite_matrix <- as.matrix(sapply(metabolite_matrix, as.numeric))
+head(metabolite_matrix)
+
+
+metabolite_data <- json_data$MS_METABOLITE_DATA$Data
+metabolite_matrix <- as.data.frame(metabolite_data)
+rownames(metabolite_matrix) <- metabolite_matrix$Metabolite
+metabolite_matrix <- metabolite_matrix[, -1]  # Eliminar la columna redundant
+metabolite_matrix[metabolite_matrix == ""] <- NA
+metabolite_matrix <- as.matrix(sapply(metabolite_matrix, as.numeric))
+head(metabolite_matrix)
+```
+
+2.  CREAR OBJECTE 'SummarizedExperiment'
+```{r SumExp}
+# Asegúrate de que las muestras en `colData` coincidan con las columnas de `metabolite_matrix`
+# Por ejemplo, las muestras en colData$SampleID deben coincidir con los nombres de las columnas en metabolite_matrix
+
+# Crear el objeto SummarizedExperiment
+
+# Eliminar la fila 5 de metabolite_matrix
+metabolite_matrix <- metabolite_matrix[-5, ]
+metabolite_matrix <-t(metabolite_matrix)
+
+colData <- colData[!rownames(colData) %in% "Corticosterone", ]
+
+# Verificar que el metabolito ha sido eliminado de ambas matrices
+head(metabolite_matrix)
+head(colData)
+
+library(POMA)
+poma_obj <- PomaCreateObject(
+  metadata = colData,   
+  features = metabolite_matrix 
+)
+
+# Verificar el objeto SummarizedExperiment
+poma_obj
+
+```
+
+
+>>>>>>> 230d2c0358dcdde75d394b794c71b4229d0a3a64
